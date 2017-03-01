@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>starPlayer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            background: url("images/bg.jpg") no-repeat 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+        }
+
+        .musicBox {
+            height: 560px;
+            width: 560px;
+            background: url("images/tune.png") no-repeat center;
+            position: absolute;
+        }
+
+        .musicPanel {
+            height: 550px;
+            width: 550px;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url("images/star-tail.png") no-repeat center, url("images/round.png") no-repeat center;
+            animation: rolling 5s infinite linear;
+        }
+        .paused{
+            animation-play-state:paused;
+        }
+
+        @keyframes rolling {
+            from {
+                transform: rotate(0deg);
+                transform-origin: 50% 50%;
+            }
+            to {
+                transform: rotate(360deg);
+                transform-origin: 50% 50%;
+            }
+        }
+
+        .musicDisc {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            background: url("images/disc2.JPG") center no-repeat;
+            background-size: cover;
+
+        }
+
+        .musicInfo {
+            width: 200px;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            margin-left: -100px;
+        }
+
+        .musicInfo p {
+            text-align: center;
+        }
+
+        .musicInfo .song {
+            color: #34f8f9;
+            font-size: 18px;
+        }
+
+        .musicInfo .singer {
+            color: white;
+        }
+
+        .musicControl img {
+            height: 40px;
+            width: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -20px;
+        }
+
+        .musicShare {
+            width: 100px;
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            margin-left: -45px;
+        }
+    </style>
+</head>
+<body>
+<div class="musicBox">
+    <div class="musicPanel">
+        <div class="musicDisc">
+        </div>
+    </div>
+    <div class="musicInfo">
+        <p class="song">君の名は</p>
+        <p class="singer">熊子</p>
+    </div>
+    <div class="musicControl">
+        <img src="images/pause.png" class="playBtn">
+    </div>
+    <div class="musicShare">
+        <img src="images/unlike.png" class="likeBtn"><img src="images/unstar.png" class="starBtn">
+    </div>
+
+    <audio autoplay loop>
+        <source src="yourname.mp3">
+    </audio>
+</div>
+
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js">
+</script>
+<script src="js/starShower.js">
+</script>
+<script>
+    $(function () {
+
+        /*流星雨代码开始*/
+        var images=[
+         'images/lx/lx_1.png',
+         'images/lx/lx_2.png',
+         'images/lx/lx_3.png',
+         'images/lx/lx_4.png',
+         'images/lx/lx_5.png',
+         'images/lx/lx_6.png',
+         'images/lx/lx_7.png',
+         ];
+         meteorShowers.option(images);//配置流星雨传入流星图片数组
+         meteorShowers.start();//开始流星雨
+//         meteorShowers.stop();//停止流星雨
+//         meteorShowers.end();//结束流星雨
+
+        /*流星雨代码结束*/
+
+        $('.playBtn').click(function () {
+            var btnSrc = $(this).attr("src");
+//                console.log(btnSrc);
+            if (btnSrc == "images/pause.png") {
+                btnSrc = "images/play.png";
+                $('.playBtn').attr("src", btnSrc);
+                $('.musicPanel').addClass("paused");
+                $("audio").get(0).pause();
+            } else if (btnSrc == "images/play.png") {
+                btnSrc = "images/pause.png";
+                $(this).attr("src", btnSrc);
+                $('.musicPanel').removeClass("paused");
+                $("audio").get(0).play();
+            }
+        });
+
+
+
+        $(".musicShare img").click(function () {
+            var src=$(this).attr("src");
+//            console.log(src);
+            var newSrc=(/un/g.test(src))?"images/"+src.slice(9):"images/un"+src.slice(7);
+//            console.log(newSrc);
+            $(this).attr("src",newSrc);
+        })
+
+
+
+    })
+</script>
+
+</body>
+</html>
