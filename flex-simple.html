@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flex 布局简化版</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html{
+            height:100% ;
+            width: 100%;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+        .div1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            width: 400px;
+            border: 1px solid red;
+            position: absolute;
+        }
+        .div2{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            width: 300px;
+            border: 1px solid lightblue;
+            animation: move 5s infinite linear;
+            border-radius: 50px;
+        }
+        .div3{
+            height: 100px;
+            width: 100px;
+            background:linear-gradient(pink,lightblue);
+            border-radius: 50%;
+        }
+
+        @keyframes move {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+
+        .div4{
+            position: absolute;
+            height: 300px;
+            width: 300px;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="div1">
+    <div class="div2">
+        <div class="div3">
+        </div>
+    </div>
+
+    <div class="div4">
+        <div class="div5">111</div>
+        <div class="div6">222</div>
+        <div class="div7">333</div>
+    </div>
+</div>
+</body>
+</html>
