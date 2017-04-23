@@ -163,15 +163,26 @@
                 btnSrc = "images/play.png";
                 $('.playBtn').attr("src", btnSrc);
                 $('.musicPanel').addClass("paused");
-                $("audio").get(0).pause();
+                // $("audio").get(0).pause();
             } else if (btnSrc == "images/play.png") {
                 btnSrc = "images/pause.png";
                 $(this).attr("src", btnSrc);
                 $('.musicPanel').removeClass("paused");
-                $("audio").get(0).play();
+                // $("audio").get(0).play();
             }
         });
 
+        // 原生是否更加优雅
+        var player = document.querySelector('audio');
+        document.querySelector('.playBtn').addEventListener('click', playBtnHandler, false)
+
+        function playBtnHandler(e){
+            if (player.paused){
+                player.play()
+            }else{
+                player.pause()
+            }
+        }
 
 
         $(".musicShare img").click(function () {
