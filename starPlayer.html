@@ -187,9 +187,7 @@
 
         $(".musicShare img").click(function () {
             var src=$(this).attr("src");
-//            console.log(src);
             var newSrc=(/un/g.test(src))?"images/"+src.slice(9):"images/un"+src.slice(7);
-//            console.log(newSrc);
             $(this).attr("src",newSrc);
         })
 
